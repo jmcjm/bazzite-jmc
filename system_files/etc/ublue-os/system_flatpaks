@@ -1,0 +1,59 @@
+# Flatpaks installed automatically by the 30-system-flatpaks.sh hook
+# (lines starting with # and empty lines are ignored).
+# Deliberately trimmed to daily drivers - everything else is one
+# "flatpak install" away.
+
+# Browsers and communication
+com.google.Chrome
+one.ablaze.floorp
+com.discordapp.Discord
+dev.vencord.Vesktop
+io.github.kukuruzka165.materialgram
+
+# Multimedia
+com.spotify.Client
+org.videolan.VLC
+org.jellyfin.JellyfinDesktop
+com.dec05eba.gpu_screen_recorder
+
+# Gaming (Steam and Lutris are native in the base image)
+com.usebottles.bottles
+org.ryujinx.Ryujinx
+
+# Dev
+cc.arduino.IDE2
+com.google.AndroidStudio
+io.podman_desktop.PodmanDesktop
+org.gnome.gitg
+org.gnome.Boxes
+
+# Graphics and office
+org.gimp.GIMP
+org.inkscape.Inkscape
+org.darktable.Darktable
+org.onlyoffice.desktopeditors
+
+# Utilities
+com.github.tchx84.Flatseal
+com.mattjakeman.ExtensionManager
+io.missioncenter.MissionCenter
+org.gnome.Firmware
+io.ente.auth
+de.haeckerfelix.Fragments
+
+# GNOME core
+org.gnome.Calculator
+org.gnome.Calendar
+org.gnome.clocks
+org.gnome.TextEditor
+org.gnome.Loupe
+org.gnome.FileRoller
+org.gnome.baobab
+org.gnome.Logs
+org.gnome.NautilusPreviewer
+org.gnome.font-viewer
+
+# Runtimes (GTK3 themes; Vulkan layers intentionally absent - native Steam
+# uses the native MangoHud from the base, the flatpak layer installs on demand)
+runtime/org.gtk.Gtk3theme.adw-gtk3/x86_64/3.22
+runtime/org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22

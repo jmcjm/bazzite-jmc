@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Installs missing flatpaks listed in /etc/ublue-os/system_flatpaks (flathub,
+# system-wide). Upstream bazzite-dx ships that list without any consumer - it is
+# an orphan left over from the amyOS rebranding - so this image provides its own.
+#
+# Runs from ublue-system-setup.service on every boot; a hash stamp makes it a
+# no-op until the list changes. The stamp is only written when every ref
+# installed successfully, so a failed run (e.g. network not up yet) retries on
+# the next boot. Comment and empty lines in the list are ignored.
+
+set -euo pipefail
+
+LIST=/etc/ublue-os/system_flatpaks
+STAMP=/etc/ublue-os/.system_flatpaks.sha256
+
+[[ -f "$LIST" ]] || exit 0
+
+current_hash=$(sha256sum "$LIST" | cut -d' ' -f1)
+if [[ -f "$STAMP" && "$current_hash" == "$(cat "$STAMP")" ]]; then
+    exit 0
+fi
+
+flatpak remote-add --if-not-exists --system flathub https://dl.flathub.org/repo/flathub.flatpakrepo || :
+
+mapfile -t refs < <(grep -vE '^\s*(#|$)' "$LIST")
+
+failed=0
+for ref in "${refs[@]}"; do
+    if ! flatpak install --system --noninteractive --or-update flathub "$ref"; then
+        echo "Failed to install ${ref}" >&2
+        failed=1
+    fi
+done
+
+if [[ "$failed" -eq 0 ]]; then
+    echo "$current_hash" > "$STAMP"
+else
+    echo "Some flatpaks failed to install - will retry on next boot." >&2
+fi
