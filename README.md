@@ -18,7 +18,7 @@ only carries the delta.
 | Brewfile with tools not packaged in Fedora + `ujust install-brews` | `system_files/usr/share/ublue-os/homebrew/bazzite-jmc.Brewfile` |
 | 14 GNOME extensions baked system-wide, fetched from extensions.gnome.org for the Shell version of the image | `build_files/install-gnome-extensions.sh` |
 | Trimmed flatpak manifest (daily drivers + adw-gtk3 themes; no Steam/Lutris — those are native in the base) | `system_files/etc/ublue-os/system_flatpaks` |
-| A hook that actually installs the flatpak manifest — upstream bazzite-dx ships its list without any consumer (orphan left over from the amyOS rebranding) | `system_files/usr/share/ublue-os/system-setup.hooks.d/30-system-flatpaks.sh` |
+| A service that actually installs the flatpak manifest after network-online — upstream bazzite-dx ships its list without any consumer (orphan left over from the amyOS rebranding) | `system_files/usr/libexec/bazzite-jmc-flatpaks` + `bazzite-jmc-flatpaks.service` |
 | `ujust toggle-gamemode-gdm` — working replacement for the upstream toggle, which writes SDDM config that GDM (used by the GNOME variant) never reads | `system_files/usr/share/ublue-os/just/61-bazzite-jmc.just` |
 | Sigstore policy for signed updates of this image | `build_files/build.sh` + `system_files/etc/containers/registries.d/` |
 

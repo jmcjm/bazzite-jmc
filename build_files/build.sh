@@ -28,6 +28,9 @@ systemctl enable lactd
 ### GNOME extensions baked system-wide from extensions.gnome.org releases
 /ctx/install-gnome-extensions.sh
 
+### Flatpak manifest installer (runs after network-online, see the unit)
+systemctl enable bazzite-jmc-flatpaks.service
+
 ### Register custom ujust recipes
 echo "import \"/usr/share/ublue-os/just/61-bazzite-jmc.just\"" >> /usr/share/ublue-os/justfile
 

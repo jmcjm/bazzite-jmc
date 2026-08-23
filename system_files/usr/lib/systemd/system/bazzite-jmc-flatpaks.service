@@ -1,0 +1,13 @@
+[Unit]
+Description=Install flatpaks from the image manifest
+# Must run after the network is actually up - flathub needs DNS. The generic
+# ublue-system-setup hooks fire before systemd-user-sessions, far too early.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/bazzite-jmc-flatpaks
+
+[Install]
+WantedBy=multi-user.target

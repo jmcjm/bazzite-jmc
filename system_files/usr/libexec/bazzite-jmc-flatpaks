@@ -3,9 +3,9 @@
 # system-wide). Upstream bazzite-dx ships that list without any consumer - it is
 # an orphan left over from the amyOS rebranding - so this image provides its own.
 #
-# Runs from ublue-system-setup.service on every boot; a hash stamp makes it a
-# no-op until the list changes. The stamp is only written when every ref
-# installed successfully, so a failed run (e.g. network not up yet) retries on
+# Runs from bazzite-jmc-flatpaks.service (after network-online) on every boot;
+# a hash stamp makes it a no-op until the list changes. The stamp is only
+# written when every ref installed successfully, so a failed run retries on
 # the next boot. Comment and empty lines in the list are ignored.
 
 set -euo pipefail
