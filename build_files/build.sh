@@ -19,6 +19,13 @@ dnf5 -y install \
     screen \
     ugrep
 
+# Packages bluefin-dx shipped that bazzite-dx lacks (bazzite installs
+# virt-manager with weak deps off, so virt-viewer never comes along;
+# remote-viewer is needed by the SATA VM launcher)
+dnf5 -y install \
+    iotop \
+    virt-viewer
+
 # LACT - GPU control daemon (COPR ilyaz/LACT)
 dnf5 -y copr enable ilyaz/LACT
 dnf5 -y install lact
