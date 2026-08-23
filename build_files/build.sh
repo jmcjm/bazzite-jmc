@@ -8,6 +8,17 @@ cp -avf "/ctx/system_files"/. /
 
 ### Extra packages
 
+# CLI daily drivers from Fedora repos (cosign stays in brew - not packaged
+# in Fedora; i2c-tools already ships in the base image)
+dnf5 -y install \
+    ImageMagick \
+    chezmoi \
+    eza \
+    gh \
+    ripgrep \
+    screen \
+    ugrep
+
 # LACT - GPU control daemon (COPR ilyaz/LACT)
 dnf5 -y copr enable ilyaz/LACT
 dnf5 -y install lact

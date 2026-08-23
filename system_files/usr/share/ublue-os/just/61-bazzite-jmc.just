@@ -8,6 +8,16 @@
 # set through AccountsService and autologin through /etc/gdm/custom.conf.
 # Experimental - verify the first boot into Game Mode with physical access.
 
+# Install Homebrew packages from the image's Brewfile
+[group('apps')]
+install-brews:
+    #!/usr/bin/bash
+    set -euo pipefail
+    if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+    brew bundle --file=/usr/share/ublue-os/homebrew/bazzite-jmc.Brewfile
+
 # Toggle default boot between Steam Game Mode and GNOME desktop (GDM variant). Options: gamemode | desktop | status
 [group('gaming')]
 toggle-gamemode-gdm ACTION="":
